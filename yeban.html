@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KiahRating</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="yeban.css">
+</head>
+<body>
+
+<div id="loadingScreen" class="loading-screen">
+    <div class="film-reel"></div>
+    <div class="loading-text">LOADING CINEMATIC EXPERIENCE</div>
+    <div class="loading-dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="mainApp" style="display: none;">
+   
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fas fa-film"></i>
+                    <span>Kiah<span class="logo-accent">Rating</span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-item active" data-nav="home">Home</a></li>
+                    <li><a href="#" class="nav-item" data-nav="movies">Movies</a></li>
+                    <li><a href="#" class="nav-item" data-nav="toprated">Top Rated</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchMovie" placeholder="Search movies..." class="search-input">
+                </div>
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <div class="user-dropdown">
+                        <a href="#"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" id="themeToggle"><i class="fas fa-moon"></i> Dark/Light</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="hero-section" id="heroSection">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 id="heroTitle">Inception</h1>
+            <p id="heroDescription">A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into a CEO's mind.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" id="watchTrailerBtn">
+                    <i class="fas fa-play"></i> Watch Trailer
+                </button>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    
+    <div class="filter-section">
+        <div class="filter-wrapper">
+            <div class="filter-label">
+                <i class="fas fa-filter"></i> Filter by Genre:
+            </div>
+            <select id="genreSelect" class="genre-filter">
+                <option value="all">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+                <option value="Fantasy">Fantasy</option>
+            </select>
+            <button id="resetFilters" class="reset-filters">
+                <i class="fas fa-sync-alt"></i> Reset
+            </button>
+        </div>
+    </div>
+
+    <!-- MOVIE ROWS -->
+    <div class="movies-container">
+        <div class="movie-row-section">
+            <div class="section-title">
+                <h2><i class="fas fa-fire"></i> All Movies</h2>
+                <span class="scroll-hint"><i class="fas fa-arrow-left"></i> scroll <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="movie-row" id="allMoviesRow">
+            </div>
+        </div>
+
+        <div class="movie-row-section" id="topRatedSection">
+            <div class="section-title">
+                <h2><i class="fas fa-trophy"></i> Top Rated Movies</h2>
+                <span class="scroll-hint"><i class="fas fa-arrow-left"></i> scroll <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="movie-row" id="topRatedRow">
+                <!-- Top rated movies -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD MOVIE BUTTON -->
+    <button class="fab-add" id="openAddMovieModal">
+        <i class="fas fa-plus"></i>
+        <span class="fab-text">Add Movie</span>
+    </button>
+
+    <!-- ADD MOVIE MODAL -->
+    <div id="movieModal" class="modal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3><i class="fas fa-video"></i> Add New Movie</h3>
+            <span class="modal-close" id="closeModalBtn">&times;</span>
+        </div>
+        <form id="addMovieForm" class="modal-form">
+            <div class="form-field">
+                <label>Movie Title *</label>
+                <input type="text" id="movieTitleInput" placeholder="Enter movie title" required>
+                <label>YouTube Trailer URL (optional)</label>
+                <input type="url" id="movieTrailerInput" placeholder="link to youtube trailer">
+            </div>
+            <div class="form-field">
+                <label>Poster URL *</label>
+                <input type="url" id="moviePosterInput" placeholder="https://example.com/poster.jpg" required>
+            </div>
+            <!--  Trailer Background URL field -->
+            <div class="form-field">
+                <label>Hero Background URL (optional)</label>
+                <input type="url" id="movieHeroInput" placeholder="https://example.com/hero-background.jpg">
+                <small style="color: #888; display: block; margin-top: 5px; font-size: 11px;">Leave empty to use poster image for hero banner</small>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Genre *</label>
+                    <select id="movieGenreInput" required>
+                        <option value="">Select a genre</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Animation">Animation</option>
+                        <option value="Action">Action</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Romance">Romance</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Release Year *</label>
+                    <input type="number" id="movieYearInput" placeholder="2024" required>
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Description</label>
+                <textarea id="movieDescInput" rows="3" placeholder="Brief description..."></textarea>
+            </div>
+            <button type="submit" class="submit-movie">
+                <i class="fas fa-plus-circle"></i> Add to Collection
+            </button>
+        </form>
+    </div>
+</div>
+        <!-- MOVIE DETAIL MODAL  -->
+<div id="movieDetailModal" class="modal">
+    <div class="modal-container" style="max-width: 700px;">
+        <div class="modal-header">
+            <h3><i class="fas fa-film"></i> Movie Details</h3>
+            <span class="modal-close" id="closeDetailModalBtn">&times;</span>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 20px;">
+            <div style="flex: 0 0 200px;">
+                <img id="modalMoviePoster" src="" alt="Poster" style="width: 100%; border-radius: 12px;">
+            </div>
+            <div style="flex: 1;">
+                <h2 id="modalMovieTitle" style="color: white; margin-bottom: 10px;"></h2>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <span id="modalMovieYear" style="color: white;"></span>
+                    <span id="modalMovieGenre" style="background: #e50914; padding: 2px 8px; border-radius: 12px; color: white;"></span>
+                </div>
+                <p id="modalMovieDesc" style="color: #ccc; line-height: 1.5;"></p>
+                
+                <div style="margin: 20px 0;">
+                    <h4 style="color: white;">Your Rating</h4>
+                    <div id="modalYourRating" style="color: white;"></div>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <h4 style="color: white;">Rate This Movie (1-10)</h4>
+                    <div id="modalStarSelector" style="display: flex; gap: 8px; margin-top: 10px;"></div>
+                    <button id="clearRatingsBtn" style="background: #333; color: #ffc107; border: 1px solid #ffc107; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-top: 10px; width: 100%;">
+                        <i class="fas fa-eraser"></i> Clear My Rating & Review
+                    </button>
+                </div>
+                <div style="margin: 20px 0;">
+                    <button id="deleteMovieBtn" style="background: #e50914; color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold;">
+                        <i class="fas fa-trash-alt"></i> Delete Movie from Collection
+                    </button>
+                </div>
+                <div id="commentSection" style="margin-top: 20px;">
+                    <h4 style="color: white;">Review</h4>
+                    <div id="commentDisplay" style="display: none;">
+                        <div style="background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 10px;">
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                <div id="existingCommentDate" style="color: #888; font-size: 12px;"></div>
+                            </div>
+                            <div id="existingCommentText" style="margin: 10px 0; color: white; line-height: 1.5;"></div>
+                        </div>
+                    </div>
+                    <div id="commentInputArea">
+                        <textarea id="commentInput" rows="3" placeholder="Write your review..." style="width: 100%; padding: 10px; margin: 10px 0; background: #2c2c2c; border: 1px solid #444; border-radius: 8px; color: white;"></textarea>
+                        <button id="addCommentBtn" style="background: #e50914; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; width: 100%;">
+                            Save Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+    <div id="trailerModal" class="modal trailer-popup">
+        <div class="modal-container trailer-container">
+            <span class="modal-close" id="closeTrailerBtn">&times;</span>
+            <iframe id="trailerFrame" width="100%" height="450" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!--  NOTIFICATION -->
+    <div id="toastMessage" class="toast hidden">
+        <i class="fas fa-check-circle"></i> <span id="toastText">Movie added!</span>
+    </div>
+
+</div>
+
+<script src="yeban.js"></script>
+</body>
+</html>
