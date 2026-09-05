@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.membership-section {
+    padding: 70px 40px 90px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.accent {
+    color: #e50914;
+}
+
+/* HEADER */
+.membership-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.membership-header h1 {
+    color: white;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.membership-header p {
+    color: #999;
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* PLANS */
+.plans-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.plan-card {
+    background: #141414;
+    border: 2px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 35px 30px;
+    width: 320px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.plan-card:hover {
+    border-color: #e50914;
+    transform: translateY(-6px);
+}
+
+.plan-card.featured {
+    border-color: #e50914;
+    background: #171213;
+    transform: scale(1.03);
+}
+
+.plan-card.featured:hover {
+    transform: scale(1.03) translateY(-6px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e50914;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 16px;
+    border-radius: 20px;
+}
+
+.plan-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #232323;
+    color: white;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+}
+
+.featured-icon {
+    background: #e50914;
+}
+
+.plan-name {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.plan-desc {
+    color: #999;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 55px;
+    margin-bottom: 18px;
+}
+
+.plan-price {
+    color: white;
+    margin-bottom: 4px;
+}
+
+.plan-price .price {
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.plan-billed {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+.save-tag {
+    background: #e50914;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+}
+
+.plan-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.plan-features li {
+    color: #ccc;
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
+.plan-features li i {
+    color: #666;
+    font-size: 12px;
+}
+
+.plan-features li i.accent {
+    color: #e50914;
+}
+
+.plan-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: white;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.plan-btn:hover {
+    border-color: #e50914;
+    background: rgba(229, 9, 20, 0.1);
+}
+
+.featured-btn {
+    background: #e50914;
+    border-color: #e50914;
+}
+
+.featured-btn:hover {
+    background: #c50813;
+}
+
+/* PERKS ROW */
+.perks-row {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    border-top: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+    margin-bottom: 55px;
+}
+
+.perk-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 200px;
+}
+
+.perk-item i {
+    color: #e50914;
+    font-size: 24px;
+}
+
+.perk-item h4 {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.perk-item p {
+    color: #888;
+    font-size: 12px;
+}
+
+/* FAQ */
+.faq-section h3 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.faq-item {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: #ddd;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #e50914;
+}
+
+.faq-item i {
+    color: #777;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .membership-section {
+        padding: 50px 20px 60px;
+    }
+    .membership-header h1 {
+        font-size: 30px;
+    }
+    .plan-card.featured {
+        transform: scale(1);
+    }
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
